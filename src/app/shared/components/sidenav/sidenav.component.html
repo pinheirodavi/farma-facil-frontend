@@ -1,0 +1,46 @@
+<mat-toolbar class="primary-background">
+  <button
+  fxFlex="5"
+  fxLayoutAlign="start"
+  class="menu-button"
+  mat-icon-button
+  (click)="drawer.toggle()">
+  <mat-icon>menu</mat-icon>
+</button>
+<img class="logo-size" src="assets/images/Logo.svg" >
+<div fxFlex="15" fxLayoutAlign="end">
+</div>
+</mat-toolbar>
+<mat-sidenav-container>
+  <mat-sidenav
+    #drawer
+    class="sidenav-height default-background primary-color"
+    fixedInViewport>
+      <div
+          fxLayout="row"
+          fxLayoutAlign="space-between center"
+          routerLink="/shipping-instruction"
+          class="full-width sidenav-button">
+          <p>Página 1</p>
+          <mat-icon>chevron_right</mat-icon>
+      </div>
+      <div
+          fxLayout="row"
+          fxLayoutAlign="space-between center"
+          routerLink="/workflow-bl"
+          class="full-width sidenav-button">
+          <p>Página 2</p>
+          <mat-icon>chevron_right</mat-icon>
+      </div>
+      <div
+          fxLayout="row"
+          fxLayoutAlign="space-between center"
+          routerLink="/users"
+          class="full-width sidenav-button">
+          <p>Página 3</p>
+          <mat-icon>chevron_right</mat-icon>
+      </div>
+</mat-sidenav>
+<mat-sidenav-content class="sidenav-content" >
+  <router-outlet></router-outlet>
+</mat-sidenav-content>

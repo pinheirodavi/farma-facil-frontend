@@ -1,0 +1,86 @@
+
+h1 {
+  font-weight: bold;
+  font-size: 30px;
+  color: black;
+  margin-top: 20px;
+}
+
+// .wrapperForm {
+//   margin-bottom: 20px !important;
+// }
+
+.wrapper-login {
+  padding-right: 82px;
+}
+
+.bgLogo img {
+  height: 50px;
+  width: 100%;
+}
+
+.background {
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 100vh; // Estende a coloração do fundo
+  width: 100vw; // Estende a coloração do fundo
+  position: relative;
+}
+
+.border{
+  border-radius: 10px;
+}
+
+.login-container {
+  background: white;
+  padding: 0px;
+}
+
+.inner-container {
+  background: white;
+  margin-top: 0px;
+  margin-bottom: 0px;
+}
+
+.app-logo {
+  height: 50px;
+  padding-bottom: 0;
+}
+
+.bgLogo {
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  padding: 50px 120px;
+}
+
+mat-form-field {
+  width: 316px;
+}
+
+.login-button {
+  width: 316px;
+  height: 40px;
+  margin-bottom: 40px;
+  color: white;
+}
+
+.material-symbols-outlined {
+  font-size: 2rem;
+  color: white;
+}
+
+h2 {
+  margin: 0px;
+  color: #003369;
+  font-weight: 700;
+}
+
+.forgot-password-button{
+  color: #003369;
+  font-size: 13px;
+  display: flex;
+  justify-content: left;
+  padding: 0;
+  width: 96px;
+}

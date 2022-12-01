@@ -1,0 +1,62 @@
+<div
+  class="background secondary-background"
+  fxFlex="100"
+  fxLayout="row"
+  fxLayoutAlign="center center"
+>
+  <div
+    class="login-container border"
+    fxLayout="column"
+    fxLayoutAlign="center center"
+  >
+    <div
+      class="border"
+      fxFlex="85"
+      fxLayout="column"
+      fxLayoutAlign="center center"
+      fxLayoutGap="25px"
+    >
+      <div class="bgLogo primary-background">
+        <img
+          alt="Logo Farma Fácil"
+          src="./../../../../assets/images/Logo.svg"
+        />
+      </div>
+      <div class="wrapperForm">
+        <form fxLayout="column">
+          <mat-form-field appearance="outline">
+            <mat-label> Email </mat-label>
+            <input matInput name="email" />
+          </mat-form-field>
+          <mat-form-field appearance="outline">
+            <mat-label>Senha</mat-label>
+            <input
+              [type]="hidePassword ? 'password' : 'text'"
+              matInput
+              name="password"
+            />
+            <button
+              (click)="hidePassword = !hidePassword"
+              mat-icon-button
+              matSuffix
+            >
+              <mat-icon>{{
+                hidePassword ? "visibility_off" : "visibility"
+              }}</mat-icon>
+            </button>
+            <!-- <mat-error *ngIf="loginForm.get('password')?.errors?.['required']">{{
+              "authentication.error.passwordIsRequired"
+              }}</mat-error> -->
+          </mat-form-field>
+        </form>
+        <button
+          (click)="login()"
+          class="login-button primary-background"
+          mat-flat-button
+        >
+          Fazer Login
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
