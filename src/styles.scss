@@ -43,3 +43,21 @@ body {
   margin: 0;
   font-family: Roboto, "Helvetica Neue", sans-serif;
 }
+
+.page {
+  margin-top: 120px !important;
+  margin: 40px;
+
+  .page-header {
+    .page-title {
+      color: #083a6e;
+
+      font-size: 20px;
+      font-weight: bold;
+    }
+  }
+}
+
+.full-width {
+  width: 100%;
+}

@@ -15,13 +15,16 @@
   <mat-sidenav
     #drawer
     class="sidenav-height default-background primary-color"
-    fixedInViewport>
+    fixedInViewport
+    [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
+    [mode]="(isHandset$ | async) ? 'over' : 'side'"
+    [opened]="(isHandset$ | async) === false && isOpen">
       <div
           fxLayout="row"
           fxLayoutAlign="space-between center"
           routerLink=""
           class="full-width sidenav-button">
-          <p>Página 1</p>
+          <p>Página Inicial</p>
           <mat-icon>chevron_right</mat-icon>
       </div>
       <div
@@ -29,7 +32,7 @@
           fxLayoutAlign="space-between center"
           routerLink=""
           class="full-width sidenav-button">
-          <p>Página 2</p>
+          <p>Produtos</p>
           <mat-icon>chevron_right</mat-icon>
       </div>
       <div

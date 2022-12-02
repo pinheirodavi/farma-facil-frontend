@@ -1,0 +1,19 @@
+td.mat-cell,
+th.mat-header-cell {
+  padding-left: 10px !important;
+}
+
+.action-th {
+  text-align: center;
+  width: 10%;
+}
+
+th {
+  background-color: #c8e6c9 !important;
+  color: #1b5e20 !important;
+  font-weight: bold !important;
+}
+
+// td:nth-child(even) {
+//   background-color: #f5fff5 !important;
+// }
