@@ -1,6 +1,8 @@
+import { Router } from '@angular/router';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { Component, OnInit } from '@angular/core';
 import { map, Observable, shareReplay } from 'rxjs';
+import { AuthenticationService } from 'src/app/authentication/services/authentication.service';
 
 @Component({
   selector: 'app-sidenav',
@@ -20,10 +22,13 @@ export class SidenavComponent implements OnInit {
 
   constructor(
     private breakpointObserver: BreakpointObserver,
-
+    private authenticationService: AuthenticationService,
   ) { }
 
   ngOnInit(): void {
   }
 
+  logout(){
+    this.authenticationService.logout();
+  }
 }

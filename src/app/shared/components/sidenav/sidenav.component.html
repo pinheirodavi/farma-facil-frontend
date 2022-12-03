@@ -1,15 +1,14 @@
 <mat-toolbar class="primary-background">
   <button
-  fxFlex="5"
-  fxLayoutAlign="start"
-  class="menu-button"
-  mat-icon-button
-  (click)="drawer.toggle()">
-  <mat-icon>menu</mat-icon>
-</button>
-<img class="logo-size" src="assets/images/Logo.svg" >
-<div fxFlex="15" fxLayoutAlign="end">
-</div>
+    fxFlex="5"
+    fxLayoutAlign="start"
+    class="menu-button"
+    mat-icon-button
+    (click)="drawer.toggle()"
+  >
+    <mat-icon>menu</mat-icon>
+  </button>
+  <img class="logo-size" src="assets/images/Logo.svg" />
 </mat-toolbar>
 <mat-sidenav-container>
   <mat-sidenav
@@ -18,32 +17,49 @@
     fixedInViewport
     [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
     [mode]="(isHandset$ | async) ? 'over' : 'side'"
-    [opened]="(isHandset$ | async) === false && isOpen">
-      <div
+    [opened]="(isHandset$ | async) === false && isOpen"
+  >
+    <div class="full-height" fxLayout="column" fxLayoutAlign="space-between end">
+      <div>
+        <div
           fxLayout="row"
           fxLayoutAlign="space-between center"
           routerLink=""
-          class="full-width sidenav-button">
+          class="full-width sidenav-button"
+        >
           <p>Página Inicial</p>
           <mat-icon>chevron_right</mat-icon>
-      </div>
-      <div
+        </div>
+        <div
           fxLayout="row"
           fxLayoutAlign="space-between center"
           routerLink=""
-          class="full-width sidenav-button">
+          class="full-width sidenav-button"
+        >
           <p>Produtos</p>
           <mat-icon>chevron_right</mat-icon>
-      </div>
-      <div
+        </div>
+        <div
           fxLayout="row"
           fxLayoutAlign="space-between center"
           routerLink="/users"
-          class="full-width sidenav-button">
+          class="full-width sidenav-button"
+        >
           <p>Usuários</p>
           <mat-icon>chevron_right</mat-icon>
+        </div>
       </div>
-</mat-sidenav>
-<mat-sidenav-content class="sidenav-content" >
-  <router-outlet></router-outlet>
-</mat-sidenav-content>
+      <div
+        fxLayout="row"
+        fxLayoutAlign="space-between"
+        (click)="logout()"
+        class="full-width sidenav-button"
+      >
+        <p>Sair</p>
+      </div>
+    </div>
+  </mat-sidenav>
+  <mat-sidenav-content class="sidenav-content">
+    <router-outlet></router-outlet>
+  </mat-sidenav-content>
+</mat-sidenav-container>

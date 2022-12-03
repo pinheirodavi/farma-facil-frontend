@@ -77,4 +77,27 @@ export class AuthenticationService {
         return false;
       });
   }
+
+  async logout() {
+    const { refreshToken } = JSON.parse(this.token!);
+    console.log(refreshToken.token);
+    return await firstValueFrom(
+      this.http.post<any>(`${environment.apiUrl}/auth/logout`, {
+        refreshToken: refreshToken.token,
+      })
+    )
+      .then((data) => {
+        this.destroyToken();
+        this.router.navigate(['/login']);
+        return data;
+      })
+      .catch((error) => {
+        console.log('ERROR!' + error.message);
+        return false;
+      });
+  }
+
+  destroyToken(){
+    localStorage.removeItem('authTokens')
+  }
 }
