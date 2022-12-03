@@ -22,6 +22,7 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SidenavComponent } from './components/sidenav/sidenav.component';
+import { HttpClientModule } from '@angular/common/http';
 
 const modules = [
   CommonModule,
@@ -29,6 +30,7 @@ const modules = [
   FlexLayoutModule,
   FormsModule,
   ReactiveFormsModule,
+  HttpClientModule
 ];
 
 const materialModules = [

@@ -23,16 +23,17 @@
         />
       </div>
       <div class="wrapperForm">
-        <form fxLayout="column">
+        <form [formGroup]="loginForm" fxLayout="column">
           <mat-form-field appearance="outline">
             <mat-label> Email </mat-label>
-            <input matInput name="email" />
+            <input matInput formControlName="email" name="email" />
           </mat-form-field>
           <mat-form-field appearance="outline">
             <mat-label>Senha</mat-label>
             <input
               [type]="hidePassword ? 'password' : 'text'"
               matInput
+              formControlName="password"
               name="password"
             />
             <button
