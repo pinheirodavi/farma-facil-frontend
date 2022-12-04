@@ -9,7 +9,7 @@ import { IToken } from '../interfaces/Token';
   providedIn: 'root',
 })
 export class AuthenticationService {
-  constructor(private http: HttpClient, private router: Router) {}
+  constructor(private http: HttpClient, private router: Router) { }
 
   get token() {
     return localStorage.getItem('authTokens');
@@ -54,27 +54,18 @@ export class AuthenticationService {
     return expiration > new Date();
   }
 
-  getActiveBearerToken() {
-    const jsonValue = this.token;
-    if (jsonValue) {
-      const tokens = JSON.parse(jsonValue);
-      return tokens.authTokens.accessToken.token;
-    }
-    return false;
-  }
-
-  async refreshToken(token: string) {
-    return await firstValueFrom(
-      this.http.post<any>(`${environment.apiUrl}/auth/refresh-tokens`, token)
-    )
-      .then((data) => {
-        this.token = data;
-        return data;
+  refreshToken(refreshToken: any) {
+    return this.http
+      .post<any>(`${environment.apiUrl}/auth/refresh-tokens`, {
+        refreshToken: refreshToken.token,
       })
-      .catch((error) => {
-        console.log('ERROR!' + error.message);
-        return false;
-      });
+      .pipe(
+        take(1),
+        tap((response) => {
+          this.token = response;
+        })
+      )
+      .toPromise();
   }
 
   async logout() {
@@ -104,8 +95,17 @@ export class AuthenticationService {
     if (this.token) {
       const { accessToken } = JSON.parse(this.token);
       return accessToken;
-    } else {
-      return '';
     }
+
+    return '';
+  }
+
+  getRefreshToken() {
+    if (this.token) {
+      const { refreshToken } = JSON.parse(this.token);
+      return refreshToken;
+    }
+
+    return '';
   }
 }

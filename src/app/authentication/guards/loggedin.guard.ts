@@ -18,9 +18,9 @@ export class LoggedinGuard implements CanActivate {
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
         return new Promise((resolve, reject) => { this.authenticationService.isAuthenticated().then( response => {
           if(response){
+            console.log('User is logged in');
             return resolve(true);
           }else{
-            console.log("CUUUUUUUUUUUUUUUUUUUUUU")
             this.router.navigate(['/login']);
             return resolve(false)
           }

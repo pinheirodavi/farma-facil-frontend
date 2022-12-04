@@ -15,26 +15,47 @@ export class AuthenticationInterceptor implements HttpInterceptor {
   constructor(
     private authService: AuthenticationService,
     private router: Router
-  ) {}
+  ) { }
 
   intercept(
     request: HttpRequest<unknown>,
     next: HttpHandler
   ): Observable<HttpEvent<unknown>> {
+
     const updatedRequest = request.clone({
       setHeaders: {
         Authorization: `Bearer ${this.authService.getAccessToken().token}`,
       },
     });
+
     return next.handle(updatedRequest).pipe(
-      catchError((err, _caught) => {
-        if (err.status === 401) {
-          // CONSERTAR ISSO AQUI !!!!!!!!!!!!!!
-        }else if(err.status === 403){
-          this.router.navigate([""]);
-        }
-        return throwError(() => err);
-      })
+      catchError((err: any) => this.handleUnauthorized(err))
     );
   }
+
+  private handleUnauthorized = (err: any) => {
+    if (err.status === 401) {
+      return this.authService.refreshToken(this.authService.getRefreshToken().token)
+        .then(data => {
+          console.log(data)
+          return data;
+        })
+        .then(tokens => {
+          console.log(tokens);
+          return this.authService.token = tokens;
+        })
+        .catch(err => {
+          this.router.navigate(['/login']);
+          this.authService.destroyToken();
+          return throwError(err);
+        });
+    }
+    if (err.status === 403) {
+      console.log('Forbidden');
+      this.router.navigate([''])
+      return throwError((err: any) => 'Sem permissão' + err);
+    }
+    return throwError(err);
+  }
+
 }
