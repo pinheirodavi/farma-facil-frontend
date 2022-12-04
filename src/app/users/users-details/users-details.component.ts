@@ -19,15 +19,16 @@ export class UsersDetailsComponent implements OnInit {
     public dialog: MatDialog
   ) {}
 
+  hidePassword = true;
   roleList: any[] = [{ role: 'Administrador' }, { role: 'Funcionário' }];
   isEdit = false;
   id!: string;
 
   usersForm = this.form.group({
-    nome: ['', Validators.required],
+    name: ['', Validators.required],
     email: ['', Validators.required],
-    senha: ['', Validators.required],
-    confirmSenha: ['', Validators.required],
+    password: ['', Validators.required],
+    confirmPassword: ['', Validators.required],
   })
 
   ngOnInit(): void {
