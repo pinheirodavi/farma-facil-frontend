@@ -27,6 +27,7 @@ export class UsersDetailsComponent implements OnInit {
   usersForm = this.form.group({
     name: ['', Validators.required],
     email: ['', Validators.required],
+    role: ['', Validators.required],
     password: ['', Validators.required],
     confirmPassword: ['', Validators.required],
   })
@@ -40,9 +41,9 @@ export class UsersDetailsComponent implements OnInit {
     })
 
     if (this.isEdit) {
-      // this.service.findUserById(this.id).subscribe( ({name, email, role}) => {
-      // this.form.setValue({name, email, role},{emitEvent: false})
-      // })
+      this.service.findUserById(this.id).subscribe( ({name, email, role}) => {
+      this.usersForm.patchValue({name, email, role},{emitEvent: false})
+      })
     }
   }
 
