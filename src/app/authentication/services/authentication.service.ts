@@ -97,7 +97,16 @@ export class AuthenticationService {
       });
   }
 
-  destroyToken(){
-    localStorage.removeItem('authTokens')
+  destroyToken() {
+    localStorage.removeItem('authTokens');
+  }
+
+  getAccessToken() {
+    if (this.token) {
+      const { accessToken } = JSON.parse(this.token);
+      return accessToken.token;
+    } else {
+      return null;
+    }
   }
 }
