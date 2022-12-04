@@ -1,0 +1,44 @@
+.action-th {
+  text-align: center;
+  width: 10%;
+}
+
+th {
+  background-color: #c8e6c9 !important;
+  color: #1b5e20 !important;
+  font-weight: bold !important;
+}
+
+.table {
+  position: relative;
+}
+
+.wr-5 {
+  width: 5%;
+}
+
+.wr-15 {
+  width: 15.8%;
+}
+
+.wr-50 {
+  width: 50%;
+}
+
+.endBtn {
+  position: absolute;
+  bottom: 0px;
+  right: 0px;
+
+  button {
+    width: 155px;
+    height: 40px;
+    color: #1b5e20 !important;
+  }
+}
+
+.formLine {
+  display: flex;
+  flex-direction: row;
+  gap: 1%;
+}
