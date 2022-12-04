@@ -9,6 +9,8 @@ const routes: Routes = [
   { path: '', component: SidenavComponent, canActivate: [LoggedinGuard],children: [
     //aqui irão os componentes dentro do sidenav
     { path: 'users', loadChildren: () => import('./users/users.module').then(m => m.UsersModule) },
+    { path: 'products', loadChildren: () => import('./product/product.module').then(m => m.ProductModule) },
+
   ]}
 ];
 
