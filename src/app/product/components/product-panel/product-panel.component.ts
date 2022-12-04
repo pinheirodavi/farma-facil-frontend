@@ -1,5 +1,8 @@
+import { FormControl } from '@angular/forms';
+import { MatPaginator } from '@angular/material/paginator';
+import { ProductService } from './../../services/product.service';
 import { MatTableDataSource } from '@angular/material/table';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 
 @Component({
   selector: 'app-product-panel',
@@ -8,24 +11,47 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ProductPanelComponent implements OnInit {
 
-  displayedColumns = ['name','ppurchase','psale','provider','inventory','stripe','recipe','generic','action']
+  @ViewChild(MatPaginator, {static: true}) paginator!: MatPaginator;
+
+  displayedColumns = ['name','purchasePrice','sellPrice','provider','inventory','stripe','recipe','generic','action']
 
   productDataSource = new MatTableDataSource<any>([]);
 
-  constructor() { }
+  constructor(private productService: ProductService) { }
+
+  filter = new FormControl('');
 
   ngOnInit(): void {
-    this.productDataSource.data = [
-      {id: 1, name: "Amoxilina", ppurchase: "50,00", psale:"100,00",provider:"Drogasil",inventory:"100",stripe:"Vermelha",recipe:"Obrigatória",generic:"Sim"},
-      {id: 2, name: "Amoxilina", ppurchase: "50,00", psale:"100,00",provider:"Drogasil",inventory:"100",stripe:"Vermelha",recipe:"Obrigatória",generic:"Sim"},
-      {id: 3, name: "Amoxilina", ppurchase: "50,00", psale:"100,00",provider:"Drogasil",inventory:"100",stripe:"Vermelha",recipe:"Obrigatória",generic:"Sim"},
-      {id: 4, name: "Amoxilina", ppurchase: "50,00", psale:"100,00",provider:"Drogasil",inventory:"100",stripe:"Vermelha",recipe:"Obrigatória",generic:"Sim"},
-      {id: 5, name: "Amoxilina", ppurchase: "50,00", psale:"100,00",provider:"Drogasil",inventory:"100",stripe:"Vermelha",recipe:"Obrigatória",generic:"Sim"},
-      {id: 6, name: "Amoxilina", ppurchase: "50,00", psale:"100,00",provider:"Drogasil",inventory:"100",stripe:"Vermelha",recipe:"Obrigatória",generic:"Sim"},
-    ]
+
+    this.productDataSource.paginator = this.paginator;
+
+    this.productService.findProducts().subscribe((response) => {
+      this.productDataSource.data = response;
+      console.log(response)
+    })
+
   }
 
-  deleteProduct(element: any){}
+  deleteProduct(element: any){
+    this.productService.deleteProduct(element.id).subscribe({
+      next: () => {
+        alert('Produto deletado com sucesso!');
+        window.location.reload();
+      },
+      error: (e) => {
+        alert('O produto não pôde ser atualizado.')
+        console.log(e)
+      }
+    })
+  }
 
+  applyFilter(event: Event) {
+    const filterValue = (event.target as HTMLInputElement).value;
+    this.productDataSource.filter = filterValue.trim().toLowerCase();
+
+    if (this.productDataSource.paginator) {
+      this.productDataSource.paginator.firstPage();
+    }
+  }
 
 }

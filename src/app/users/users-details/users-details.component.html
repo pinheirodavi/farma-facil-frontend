@@ -66,8 +66,16 @@
   </div>
 
   <div class="endBtn" fxLayoutGap="15px">
-    <button color="accent" mat-flat-button routerLink="..">Voltar</button>
-    <button color="primary" style="color: white" mat-flat-button (click)="!isEdit ? registerUser() : updateUser()">
+    <button color="accent" class="add-button" mat-flat-button routerLink="..">Voltar</button>
+    <button
+          mat-flat-button
+          (click)="clear()"
+          color="accent"
+          class="add-button"
+      >
+          Limpar
+      </button>
+    <button color="accent" class="add-button" mat-flat-button (click)="!isEdit ? registerUser() : updateUser()">
       {{ (isEdit?'Atualizar':'Salvar') }}
     </button>
   </div>

@@ -86,4 +86,8 @@ export class UsersDetailsComponent implements OnInit {
         }
       );
   }
+
+  clear() {
+    this.usersForm.reset();
+  }
 }

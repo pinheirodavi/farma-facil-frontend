@@ -86,3 +86,35 @@ h1{
 .full-height{
   height: 100%;
 }
+
+.logout {
+  display: flex;
+  font-size: 18px;
+  font-weight: 500;
+
+  justify-content: left;
+  width: 100%;
+  margin-bottom: 25px;
+  padding-left: 20px;
+}
+
+.logout-btn {
+
+  color: #1b5e20;
+  align-items: center;
+
+  background-color: transparent;
+
+
+  font-size: 18px !important;
+  font-weight: 500;
+
+  mat-icon {
+    font-size: 25px;
+  }
+
+  span {
+    margin-right: 15px;
+  }
+
+}

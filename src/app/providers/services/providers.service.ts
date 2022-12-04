@@ -18,6 +18,7 @@ export class ProvidersService {
   }
 
   createProvider(provider: Object){
+    console.log(provider)
     return this.http.post<any>(`${environment.apiUrl}/providers`, provider);
   }
 

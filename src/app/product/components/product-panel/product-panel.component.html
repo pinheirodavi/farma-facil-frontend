@@ -1,4 +1,18 @@
-<div class="page" fxLayout="column" fxLayoutGap="30px">
+<div class="page">
+
+  <h1>Produtos</h1>
+
+  <div>
+    <mat-form-field appearance="outline" class="filter">
+      <input
+        matInput
+        (keyup)="applyFilter($event)"
+        placeholder="Filtro"
+        #input
+      >
+    </mat-form-field>
+  </div>
+
   <div class="table">
     <table mat-table [dataSource]="productDataSource" class="full-width">
       <ng-container matColumnDef="name">
@@ -7,17 +21,17 @@
         </th>
         <td mat-cell *matCellDef="let element">{{ element?.name }}</td>
       </ng-container>
-      <ng-container matColumnDef="ppurchase">
+      <ng-container matColumnDef="purchasePrice">
         <th mat-header-cell *matHeaderCellDef class="wr-10">
           <span class="table-header">P. Compra</span>
         </th>
-        <td mat-cell *matCellDef="let element">{{ element?.ppurchase }}</td>
+        <td mat-cell *matCellDef="let element">{{ element?.purchasePrice }}</td>
       </ng-container>
-      <ng-container matColumnDef="psale">
+      <ng-container matColumnDef="sellPrice">
         <th mat-header-cell *matHeaderCellDef class="wr-10">
           <span class="table-header">P. Venda</span>
         </th>
-        <td mat-cell *matCellDef="let element">{{ element?.psale }}</td>
+        <td mat-cell *matCellDef="let element">{{ element?.sellPrice }}</td>
       </ng-container>
       <ng-container matColumnDef="inventory">
         <th mat-header-cell *matHeaderCellDef class="wr-10">
@@ -29,7 +43,7 @@
         <th mat-header-cell *matHeaderCellDef class="wr-10">
           <span class="table-header">Fornecedor</span>
         </th>
-        <td mat-cell *matCellDef="let element">{{ element?.provider }}</td>
+        <td mat-cell *matCellDef="let element">{{ element?.provider.name }}</td>
       </ng-container>
       <ng-container matColumnDef="stripe">
         <th mat-header-cell *matHeaderCellDef class="wr-10">
@@ -41,13 +55,13 @@
         <th mat-header-cell *matHeaderCellDef class="wr-10">
           <span class="table-header">Receita</span>
         </th>
-        <td mat-cell *matCellDef="let element">{{ element?.recipe }}</td>
+        <td mat-cell *matCellDef="let element">{{ element?.recipe? "Obrigatório" : "Não obrigatório." }}</td>
       </ng-container>
       <ng-container matColumnDef="generic">
         <th mat-header-cell *matHeaderCellDef class="wr-10">
           <span class="table-header">Genérico</span>
         </th>
-        <td mat-cell *matCellDef="let element">{{ element?.generic }}</td>
+        <td mat-cell *matCellDef="let element">{{ element?.generic? "Sim" : "Não" }}</td>
       </ng-container>
       <ng-container matColumnDef="action">
         <th mat-header-cell *matHeaderCellDef class="action-th">
@@ -77,8 +91,13 @@
       <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
     </table>
   </div>
+  <mat-paginator
+    [pageSizeOptions]="[10, 5, 15, 20]"
+    showFirstLastButtons
+  >
+  </mat-paginator>
 
   <div class="endBtn">
-    <button color="accent" mat-flat-button routerLink="new">Novo Produto</button>
+    <button color="accent" class="add-button" mat-flat-button routerLink="new">Novo Produto</button>
   </div>
 </div>

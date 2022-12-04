@@ -1,5 +1,8 @@
+import { MatPaginator } from '@angular/material/paginator';
+import { FormControl } from '@angular/forms';
+import { CustomerService } from './../../services/customer.service';
 import { MatTableDataSource } from '@angular/material/table';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 
 @Component({
   selector: 'app-customer-panel',
@@ -8,22 +11,46 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CustomerPanelComponent implements OnInit {
 
+  @ViewChild(MatPaginator, {static: true}) paginator!: MatPaginator;
+
   customerDataSource = new MatTableDataSource<any>([]);
 
   displayedColumns = ['name','email','postalCode','address','legalDocument','phone','isActiveClient','action']
 
-  constructor() { }
+  filter = new FormControl('');
+
+  constructor(private customerService: CustomerService) { }
 
   ngOnInit(): void {
-    this.customerDataSource.data = [
-      {id: 1, name: 'João', email: 'joão@tantofaz.com', postalCode:'12345-000', address:'Rua do João, 52', legalDocument: '123456789-00', phone: '(22) 99999-0000', isActiveClient: 'Sim'},
-      {id: 1, name: 'João', email: 'joão@tantofaz.com', postalCode:'12345-000', address:'Rua do João, 52', legalDocument: '123456789-00', phone: '(22) 99999-0000', isActiveClient: 'Sim'},
-      {id: 1, name: 'João', email: 'joão@tantofaz.com', postalCode:'12345-000', address:'Rua do João, 52', legalDocument: '123456789-00', phone: '(22) 99999-0000', isActiveClient: 'Sim'},
-      {id: 1, name: 'João', email: 'joão@tantofaz.com', postalCode:'12345-000', address:'Rua do João, 52', legalDocument: '123456789-00', phone: '(22) 99999-0000', isActiveClient: 'Sim'},
-      {id: 1, name: 'João', email: 'joão@tantofaz.com', postalCode:'12345-000', address:'Rua do João, 52', legalDocument: '123456789-00', phone: '(22) 99999-0000', isActiveClient: 'Sim'}
-    ]
+
+    this.customerDataSource.paginator = this.paginator;
+
+    this.customerService.findCustomers().subscribe((response) => {
+      this.customerDataSource.data = response
+    })
+
   }
 
-  deleteCustomer(element: any){}
+  applyFilter(event: Event) {
+    const filterValue = (event.target as HTMLInputElement).value;
+    this.customerDataSource.filter = filterValue.trim().toLowerCase();
+
+    if (this.customerDataSource.paginator) {
+      this.customerDataSource.paginator.firstPage();
+    }
+  }
+
+
+  deleteCustomer(element: any){
+    this.customerService.deleteCustomer(element.id).subscribe({
+      next: () => {
+        alert("Cliente deletado com sucesso.")
+        window.location.reload()
+      },
+      error: () => {
+        alert("Não foi possível deletar o cliente.")
+      }
+    })
+  }
 
 }

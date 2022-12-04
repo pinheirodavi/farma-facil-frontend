@@ -27,7 +27,7 @@
         <div
           fxLayout="row"
           fxLayoutAlign="space-between center"
-          routerLink="/home"
+          routerLink="/"
           class="full-width sidenav-button"
         >
           <p>Página Inicial</p>
@@ -71,12 +71,11 @@
         </div>
       </div>
       <div
-        fxLayout="row"
-        fxLayoutAlign="space-between"
-        (click)="logout()"
-        class="full-width sidenav-button"
+        class="logout"
       >
-        <p> Sair  <mat-icon>logout</mat-icon> </p>
+      <button class="logout-btn" mat-flat-button (click)="logout()">
+        <span>Sair</span><mat-icon>logout</mat-icon>
+      </button>
       </div>
     </div>
   </mat-sidenav>

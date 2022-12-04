@@ -11,15 +11,15 @@
         </mat-form-field>
         <mat-form-field appearance="outline" class="wr-50">
           <mat-label> Preço de Compra </mat-label>
-          <input matInput type="number" formControlName="ppurchase" />
-          <mat-error *ngIf="productForm.get('ppurchase')?.errors?.['required']">
+          <input matInput type="number" formControlName="purchasePrice" />
+          <mat-error *ngIf="productForm.get('purchasePrice')?.errors?.['required']">
             Preço de Compra é obrigatório.
           </mat-error>
         </mat-form-field>
         <mat-form-field appearance="outline" class="wr-50">
           <mat-label> Preço de Venda </mat-label>
-          <input matInput type="number" formControlName="psale" />
-          <mat-error *ngIf="productForm.get('psale')?.errors?.['required']">
+          <input matInput type="number" formControlName="sellPrice" />
+          <mat-error *ngIf="productForm.get('sellPrice')?.errors?.['required']">
             Preço de Venda é obrigatório.
           </mat-error>
         </mat-form-field>
@@ -27,7 +27,13 @@
       <div class="formLine">
         <mat-form-field appearance="outline" class="wr-50">
           <mat-label> Fornecedor </mat-label>
-          <input matInput formControlName="provider" />
+          <mat-select formControlName="provider" disableOptionCentering>
+            <mat-option *ngFor="let product of productList"
+            [value]="product.id"
+          >
+            {{ product.name }}
+          </mat-option>
+          </mat-select>
           <mat-error *ngIf="productForm.get('provider')?.errors?.['required']">
             Fornecedor é obrigatório.
           </mat-error>
@@ -42,10 +48,10 @@
         <mat-form-field appearance="outline" class="wr-50">
           <mat-label> Tarja </mat-label>
           <mat-select formControlName="stripe" disableOptionCentering>
-            <mat-option [value]="'1'"> Preta </mat-option>
-            <mat-option [value]="'2'"> Vermelha </mat-option>
-            <mat-option [value]="'3'"> Amarela </mat-option>
-            <mat-option [value]="'4'"> Branca </mat-option>
+            <mat-option [value]="'Preta'"> Preta </mat-option>
+            <mat-option [value]="'Vermelha'"> Vermelha </mat-option>
+            <mat-option [value]="'Amarela'"> Amarela </mat-option>
+            <mat-option [value]="'Branca'"> Branca </mat-option>
           </mat-select>
           <mat-error *ngIf="productForm.get('stripe')?.errors?.['required']">
             Tarja é obrigatório.
@@ -56,8 +62,8 @@
         <mat-form-field appearance="outline" class="wr-15">
           <mat-label> Receita </mat-label>
           <mat-select formControlName="recipe" disableOptionCentering>
-            <mat-option [value]="'1'"> Obrigatório </mat-option>
-            <mat-option [value]="'2'"> Não obrigatório </mat-option>
+            <mat-option [value]="true"> Obrigatório </mat-option>
+            <mat-option [value]="false"> Não obrigatório </mat-option>
           </mat-select>
           <mat-error *ngIf="productForm.get('recipe')?.errors?.['required']">
             Receita é obrigatório.
@@ -66,8 +72,8 @@
         <mat-form-field appearance="outline" class="wr-15">
           <mat-label> Genérico </mat-label>
           <mat-select formControlName="generic" disableOptionCentering>
-            <mat-option [value]="'1'"> Sim </mat-option>
-            <mat-option [value]="'2'"> Não </mat-option>
+            <mat-option [value]="true"> Sim </mat-option>
+            <mat-option [value]="false"> Não </mat-option>
           </mat-select>
           <mat-error *ngIf="productForm.get('generic')?.errors?.['required']">
             Genérico é obrigatório.
@@ -78,7 +84,15 @@
   </div>
 
   <div class="endBtn">
-    <button color="accent" mat-flat-button routerLink="..">Voltar</button>
-    <button color="accent" mat-flat-button routerLink="..">{{ isEdit? "Atualizar" : "Salvar"}}</button>
+    <button color="accent" class="add-button" mat-flat-button routerLink="..">Voltar</button>
+    <button
+          mat-flat-button
+          (click)="clear()"
+          color="accent"
+          class="add-button"
+      >
+          Limpar
+      </button>
+    <button color="accent" class="add-button" (click)="isEdit? update() : create()" mat-flat-button>{{ isEdit? "Atualizar" : "Salvar"}}</button>
   </div>
 </div>

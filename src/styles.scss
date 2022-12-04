@@ -65,3 +65,17 @@ body {
 .full-width {
   width: 100%;
 }
+
+.add-button {
+  color: #1B5E20 !important;
+  font-weight: bold;
+  height: 40px;
+  margin-inline: 5px;
+  transition: 1s;
+  width: 175px;
+}
+
+.add-button:hover {
+  background-color: rgba(27, 94, 32, 0.6);
+  color: #FFFFFF !important;
+}

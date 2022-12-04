@@ -1,3 +1,4 @@
+import { CustomerService } from './../../services/customer.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Validators, FormBuilder } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
@@ -25,6 +26,8 @@ export class CustomerDetailsComponent implements OnInit {
   constructor(
     private form: FormBuilder,
     private route: ActivatedRoute,
+    private customerService: CustomerService,
+    private router: Router,
     ) { }
 
   ngOnInit(): void {
@@ -36,6 +39,42 @@ export class CustomerDetailsComponent implements OnInit {
       }
     });
 
+    if(this.isEdit){
+      this.customerService.findCustomerById(this.customerId).subscribe((response) => {
+        this.customerForm.patchValue(response)
+      })
+    }
+
+  }
+
+  update(){
+    this.customerService.updateCustomer(this.customerForm.value, this.customerId).subscribe({
+      next: () => {
+        alert('Produto atualizado com sucesso!');
+        this.router.navigate(['/products']);
+      },
+      error: (e) => {
+        alert('O produto não pôde ser atualizado.')
+        console.log(e)
+      }
+    })
+  }
+
+  create(){
+    this.customerService.createCustomer(this.customerForm.value).subscribe({
+      next: () => {
+        alert('Cliente adicionado com sucesso!');
+        this.router.navigate(['/customers'])
+      },
+      error: (e) => {
+        alert('O cliente não pôde ser adicionado.')
+        console.log(e)
+      }
+    })
+  }
+
+  clear() {
+    this.customerForm.reset();
   }
 
 }

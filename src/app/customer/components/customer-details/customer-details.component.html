@@ -20,7 +20,7 @@
       <div class="formLine">
         <mat-form-field appearance="outline" class="wr-50">
           <mat-label> CEP </mat-label>
-          <input matInput formControlName="postalCode" mask='00000-000' />
+          <input matInput formControlName="postalCode" [dropSpecialCharacters]="false" mask='00000-000' />
           <mat-error *ngIf="customerForm.get('postalCode')?.errors?.['required']">
             CEP é obrigatório.
           </mat-error>
@@ -37,14 +37,14 @@
 
         <mat-form-field appearance="outline" class="wr-50">
           <mat-label> Documento </mat-label>
-          <input matInput formControlName="legalDocument" mask='000.000.000-00'/>
+          <input matInput formControlName="legalDocument" [dropSpecialCharacters]="false" mask='000.000.000-00'/>
           <mat-error *ngIf="customerForm.get('legalDocument')?.errors?.['required']">
             Documento é obrigatório.
           </mat-error>
         </mat-form-field>
         <mat-form-field appearance="outline" class="wr-50">
           <mat-label> Telefone </mat-label>
-          <input matInput formControlName="phone" mask='(00) 00000-0000'/>
+          <input matInput formControlName="phone" [dropSpecialCharacters]="false" mask='(00) 00000-0000'/>
           <mat-error *ngIf="customerForm.get('phone')?.errors?.['required']">
             Telefone é obrigatório.
           </mat-error>
@@ -54,8 +54,8 @@
         <mat-form-field appearance="outline" class="wr-15">
           <mat-label> Cliente Ativo </mat-label>
           <mat-select formControlName="isActiveClient" disableOptionCentering>
-            <mat-option [value]="'1'"> Sim </mat-option>
-            <mat-option [value]="'2'"> Não </mat-option>
+            <mat-option [value]="true"> Sim </mat-option>
+            <mat-option [value]="false"> Não </mat-option>
           </mat-select>
           <mat-error *ngIf="customerForm.get('isActiveClient')?.errors?.['required']">
             Cliente Ativo é obrigatório.
@@ -66,7 +66,15 @@
   </div>
 
   <div class="endBtn">
-    <button color="accent" mat-flat-button routerLink="..">Voltar</button>
-    <button color="accent" mat-flat-button routerLink="..">{{ isEdit? "Atualizar" : "Salvar"}}</button>
+    <button color="accent" class="add-button"  mat-flat-button routerLink="..">Voltar</button>
+    <button
+          mat-flat-button
+          (click)="clear()"
+          color="accent"
+          class="add-button"
+      >
+          Limpar
+      </button>
+    <button color="accent" class="add-button" mat-flat-button (click)="isEdit? update() : create()">{{ isEdit? "Atualizar" : "Salvar"}}</button>
   </div>
 </div>
