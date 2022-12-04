@@ -1,1 +1,62 @@
-<p>users-details works!</p>
+<div class="page" fxLayout="column" fxLayoutGap="30px">
+  <div class="form">
+    <form [formGroup]="usersForm" flexLayout="column">
+      <div class="formLine">
+        <mat-form-field appearance="outline" fxFlex="50">
+          <mat-label> Nome </mat-label>
+          <input matInput formControlName="name" />
+        </mat-form-field>
+        <mat-form-field appearance="outline" fxFlex="50">
+          <mat-label> Email </mat-label>
+          <input matInput type="email" formControlName="email" />
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+          <mat-label>Senha</mat-label>
+          <input
+            [type]="hidePassword ? 'password' : 'text'"
+            matInput
+            formControlName="password"
+            name="password"
+          />
+          <button
+            (click)="hidePassword = !hidePassword"
+            mat-icon-button
+            matSuffix
+          >
+            <mat-icon>{{
+              hidePassword ? "visibility_off" : "visibility"
+            }}</mat-icon>
+          </button>
+          <!-- <mat-error *ngIf="loginForm.get('password')?.errors?.['required']">{{
+            "authentication.error.passwordIsRequired"
+            }}</mat-error> -->
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+          <mat-label>Confirmar Senha</mat-label>
+          <input
+            [type]="hidePassword ? 'password' : 'text'"
+            matInput
+            formControlName="confirmPassword"
+            name="password"
+          />
+          <button
+            (click)="hidePassword = !hidePassword"
+            mat-icon-button
+            matSuffix
+          >
+            <mat-icon>{{
+              hidePassword ? "visibility_off" : "visibility"
+            }}</mat-icon>
+          </button>
+          <!-- <mat-error *ngIf="loginForm.get('password')?.errors?.['required']">{{
+            "authentication.error.passwordIsRequired"
+            }}</mat-error> -->
+        </mat-form-field>
+      </div>
+    </form>
+  </div>
+
+  <div class="endBtn">
+    <button color="accent" mat-flat-button routerLink="..">Voltar</button>
+  </div>
+</div>
