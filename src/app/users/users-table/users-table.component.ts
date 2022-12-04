@@ -33,5 +33,12 @@ export class UsersTableComponent implements OnInit {
     })
   }
 
-  deleteUser(element: any){}
+  deleteUser(element: any){
+    if(confirm(`Deseja deletar o usuário ${element.name}?`)){
+      this.service.deleteUser(element.id).subscribe(response => {
+        alert('Usuário deletado com sucesso!');
+        this.ngOnInit();
+      })
+    }
+  }
 }

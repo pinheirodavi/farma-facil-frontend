@@ -26,4 +26,8 @@ export class UsersService {
   updateUser(user:any, id: string){
     return this.http.put<any>(`${environment.apiUrl}/users/${id}`,user)
   }
+
+  deleteUser(id: string){
+    return this.http.delete<any>(`${environment.apiUrl}/users/${id}`)
+  }
 }
