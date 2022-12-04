@@ -11,7 +11,7 @@
         </mat-form-field>
         <mat-form-field appearance="outline" class="wr-50">
           <mat-label> Email </mat-label>
-          <input matInput type="number" formControlName="email" />
+          <input matInput formControlName="email" />
           <mat-error *ngIf="customerForm.get('email')?.errors?.['required']">
             Email é obrigatório.
           </mat-error>
@@ -20,7 +20,7 @@
       <div class="formLine">
         <mat-form-field appearance="outline" class="wr-50">
           <mat-label> CEP </mat-label>
-          <input matInput type="number" formControlName="postalCode" />
+          <input matInput formControlName="postalCode" mask='00000-000' />
           <mat-error *ngIf="customerForm.get('postalCode')?.errors?.['required']">
             CEP é obrigatório.
           </mat-error>
@@ -37,14 +37,14 @@
 
         <mat-form-field appearance="outline" class="wr-50">
           <mat-label> Documento </mat-label>
-          <input matInput type="number" formControlName="legalDocument" />
+          <input matInput formControlName="legalDocument" mask='000.000.000-00'/>
           <mat-error *ngIf="customerForm.get('legalDocument')?.errors?.['required']">
             Documento é obrigatório.
           </mat-error>
         </mat-form-field>
         <mat-form-field appearance="outline" class="wr-50">
           <mat-label> Telefone </mat-label>
-          <input matInput formControlName="phone" />
+          <input matInput formControlName="phone" mask='(00) 00000-0000'/>
           <mat-error *ngIf="customerForm.get('phone')?.errors?.['required']">
             Telefone é obrigatório.
           </mat-error>
@@ -67,5 +67,6 @@
 
   <div class="endBtn">
     <button color="accent" mat-flat-button routerLink="..">Voltar</button>
+    <button color="accent" mat-flat-button routerLink="..">{{ isEdit? "Atualizar" : "Salvar"}}</button>
   </div>
 </div>
