@@ -53,14 +53,15 @@ mat-paginator {
 }
 
 .add-button {
-  background-color: rgba(27, 94, 32, 0.75);
-  color: #FFFFFF;
+  color: #1B5E20;
   font-weight: bold;
   height: 40px;
   margin-inline: 5px;
+  transition: 1s;
   width: 175px;
 }
 
 .add-button:hover {
-  background-color: rgba(27, 94, 32, 1);
+  background-color: rgba(27, 94, 32, 0.6);
+  color: #FFFFFF;
 }

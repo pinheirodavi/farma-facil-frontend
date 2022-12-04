@@ -38,13 +38,12 @@ export class AuthenticationService {
   userRole: any;
 
   authenticate(loginInfo: { login: string; password: string }) {
-    console.log(loginInfo);
     return this.http
       .post<any>(`${environment.apiUrl}/auth/login`, loginInfo)
       .pipe(
         take(1),
         tap((response) => {
-          console.log(response);
+          localStorage.setItem("username", response.user.name);
           this.token = response.authTokens;
         })
       );

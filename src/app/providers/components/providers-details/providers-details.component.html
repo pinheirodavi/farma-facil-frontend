@@ -48,6 +48,7 @@
       <button
           mat-flat-button
           routerLink="/providers"
+          color="accent"
           class="clear-button"
       >
           Voltar
@@ -55,6 +56,7 @@
       <button
           mat-flat-button
           (click)="clear()"
+          color="accent"
           class="clear-button"
       >
           Limpar
@@ -62,6 +64,7 @@
       <button
           mat-flat-button
           (click)="isNew? createProvider() : updateProvider()"
+          color="accent"
           class="button"
       >
           {{ isNew? 'Adicionar' : 'Atualizar' }}
