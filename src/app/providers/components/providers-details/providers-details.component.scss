@@ -1,0 +1,38 @@
+.page {
+    width: 100%;
+}
+
+h1 {
+    color: #1B5E20;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+form {
+    width: 100%;
+}
+
+mat-form-field {
+  margin-right: 10px;
+}
+
+.general mat-form-field, .contact mat-form-field {
+  width: 45%;
+}
+
+.address mat-form-field {
+  width: calc(30% - 3.333px);
+}
+
+button {
+  background-color: rgba(27, 94, 32, 0.75);
+  color: #FFFFFF;
+  font-weight: bold;
+  height: 40px;
+  margin-inline: 5px;
+  width: 155px;
+}
+
+button:hover {
+  background-color: rgba(27, 94, 32, 1);
+}
