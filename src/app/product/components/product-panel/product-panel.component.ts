@@ -8,20 +8,20 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ProductPanelComponent implements OnInit {
 
-  displayedColumns = ['name','ppurchase','psale','provider','inventory','stripe','revenue','generic','action']
+  displayedColumns = ['name','ppurchase','psale','provider','inventory','stripe','recipe','generic','action']
 
-  userDataSource = new MatTableDataSource<any>([]);
+  productDataSource = new MatTableDataSource<any>([]);
 
   constructor() { }
 
   ngOnInit(): void {
-    this.userDataSource.data = [
-      {id: 1, name: "Amoxilina", ppurchase: "50,00", psale:"100,00",provider:"Drogasil",inventory:"100",stripe:"Vermelha",revenue:"Obrigatória",generic:"Sim"},
-      {id: 2, name: "Amoxilina", ppurchase: "50,00", psale:"100,00",provider:"Drogasil",inventory:"100",stripe:"Vermelha",revenue:"Obrigatória",generic:"Sim"},
-      {id: 3, name: "Amoxilina", ppurchase: "50,00", psale:"100,00",provider:"Drogasil",inventory:"100",stripe:"Vermelha",revenue:"Obrigatória",generic:"Sim"},
-      {id: 4, name: "Amoxilina", ppurchase: "50,00", psale:"100,00",provider:"Drogasil",inventory:"100",stripe:"Vermelha",revenue:"Obrigatória",generic:"Sim"},
-      {id: 5, name: "Amoxilina", ppurchase: "50,00", psale:"100,00",provider:"Drogasil",inventory:"100",stripe:"Vermelha",revenue:"Obrigatória",generic:"Sim"},
-      {id: 6, name: "Amoxilina", ppurchase: "50,00", psale:"100,00",provider:"Drogasil",inventory:"100",stripe:"Vermelha",revenue:"Obrigatória",generic:"Sim"},
+    this.productDataSource.data = [
+      {id: 1, name: "Amoxilina", ppurchase: "50,00", psale:"100,00",provider:"Drogasil",inventory:"100",stripe:"Vermelha",recipe:"Obrigatória",generic:"Sim"},
+      {id: 2, name: "Amoxilina", ppurchase: "50,00", psale:"100,00",provider:"Drogasil",inventory:"100",stripe:"Vermelha",recipe:"Obrigatória",generic:"Sim"},
+      {id: 3, name: "Amoxilina", ppurchase: "50,00", psale:"100,00",provider:"Drogasil",inventory:"100",stripe:"Vermelha",recipe:"Obrigatória",generic:"Sim"},
+      {id: 4, name: "Amoxilina", ppurchase: "50,00", psale:"100,00",provider:"Drogasil",inventory:"100",stripe:"Vermelha",recipe:"Obrigatória",generic:"Sim"},
+      {id: 5, name: "Amoxilina", ppurchase: "50,00", psale:"100,00",provider:"Drogasil",inventory:"100",stripe:"Vermelha",recipe:"Obrigatória",generic:"Sim"},
+      {id: 6, name: "Amoxilina", ppurchase: "50,00", psale:"100,00",provider:"Drogasil",inventory:"100",stripe:"Vermelha",recipe:"Obrigatória",generic:"Sim"},
     ]
   }
 

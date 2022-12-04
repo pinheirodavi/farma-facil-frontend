@@ -55,11 +55,11 @@
       <div class="formLine">
         <mat-form-field appearance="outline" class="wr-15">
           <mat-label> Receita </mat-label>
-          <mat-select formControlName="revenue" disableOptionCentering>
+          <mat-select formControlName="recipe" disableOptionCentering>
             <mat-option [value]="'1'"> Obrigatório </mat-option>
             <mat-option [value]="'2'"> Não obrigatório </mat-option>
           </mat-select>
-          <mat-error *ngIf="productForm.get('revenue')?.errors?.['required']">
+          <mat-error *ngIf="productForm.get('recipe')?.errors?.['required']">
             Receita é obrigatório.
           </mat-error>
         </mat-form-field>

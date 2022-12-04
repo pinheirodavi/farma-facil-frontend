@@ -16,9 +16,12 @@ export class ProductDetailsComponent implements OnInit {
     provider: ['', Validators.required],
     inventory: ['', Validators.required],
     stripe: ['', Validators.required],
-    revenue: ['', Validators.required],
+    recipe: ['', Validators.required],
     generic: ['', Validators.required]
   });
+
+  productId: any;
+  isEdit: boolean = false;
 
   constructor(
     private form: FormBuilder,
@@ -27,6 +30,14 @@ export class ProductDetailsComponent implements OnInit {
     ) { }
 
   ngOnInit(): void {
+
+    this.route.params.subscribe({
+      next: (params) => {
+        this.productId = params['id'];
+        this.productId == "new"? this.isEdit = false : this.isEdit = true
+      }
+    });
+
   }
 
 }
