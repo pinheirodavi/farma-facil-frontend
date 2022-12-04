@@ -15,15 +15,6 @@ export class UsersTableComponent implements OnInit {
 
   displayedColumns = ['name','email','role','action']
 
-  // [
-  //   {username: "user1",name: "Usuário 1", email:"user1@email.com",profile:"Administrador"},
-  //   {username: "user2",name: "Usuário 2", email:"user2@email.com",profile:"Funcionário"},
-  //   {username: "user3",name: "Usuário 3", email:"user3@email.com",profile:"Funcionário"},
-  //   {username: "user4",name: "Usuário 4", email:"user4@email.com",profile:"Funcionário"},
-  //   {username: "user5",name: "Usuário 5", email:"user5@email.com",profile:"Funcionário"},
-  //   {username: "user6",name: "Usuário 6", email:"user6@email.com",profile:"Funcionário"},
-  // ]
-
   constructor(
     private service: UsersService
   ) { }
