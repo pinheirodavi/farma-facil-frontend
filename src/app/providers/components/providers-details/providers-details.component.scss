@@ -1,0 +1,40 @@
+h1 {
+  color: #1B5E20;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+form {
+  width: 100%;
+}
+
+mat-form-field {
+  margin-right: 10px;
+}
+
+.general mat-form-field, .contact mat-form-field {
+  width: calc(50% - 10px);
+}
+
+.address mat-form-field {
+  width: calc(33.333% - 10px);
+}
+
+.bottom-bar {
+  position: absolute;
+  bottom: 0px;
+  right: 0px;
+}
+
+button {
+  background-color: rgba(27, 94, 32, 0.75);
+  color: #FFFFFF;
+  font-weight: bold;
+  height: 40px;
+  margin-inline: 5px;
+  width: 155px;
+}
+
+button:hover {
+  background-color: rgba(27, 94, 32, 1);
+}

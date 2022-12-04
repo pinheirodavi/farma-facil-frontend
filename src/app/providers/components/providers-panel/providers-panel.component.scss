@@ -1,0 +1,66 @@
+h1 {
+  color: #1B5E20;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.filter {
+  width: 50%;
+}
+
+table {
+  width: 100%;
+}
+
+th {
+  background-color: #c8e6c9 !important;
+  color: #1b5e20 !important;
+  font-weight: bold !important;
+}
+
+.actions-th {
+  padding-left: 10px !important;
+}
+
+.wr-8 {
+  width: 8%;
+}
+
+.wr-10 {
+  width: 10%;
+}
+
+.wr-14 {
+  width: 14%;
+}
+
+.wr-20 {
+  width: 20%;
+}
+
+.delete {
+  color: #b41e2a;
+}
+
+mat-paginator {
+  margin-top: 10px;
+}
+
+.bottom-bar {
+  position: absolute;
+  bottom: 0px;
+  right: 0px;
+}
+
+.add-button {
+  background-color: rgba(27, 94, 32, 0.75);
+  color: #FFFFFF;
+  font-weight: bold;
+  height: 40px;
+  margin-inline: 5px;
+  width: 175px;
+}
+
+.add-button:hover {
+  background-color: rgba(27, 94, 32, 1);
+}
