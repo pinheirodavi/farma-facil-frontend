@@ -1,0 +1,84 @@
+<div class="page" fxLayout="column" fxLayoutGap="30px">
+  <div class="table">
+    <table mat-table [dataSource]="userDataSource" class="full-width">
+      <ng-container matColumnDef="name">
+        <th mat-header-cell *matHeaderCellDef class="wr-10">
+          <span class="table-header">Nome</span>
+        </th>
+        <td mat-cell *matCellDef="let element">{{ element?.name }}</td>
+      </ng-container>
+      <ng-container matColumnDef="ppurchase">
+        <th mat-header-cell *matHeaderCellDef class="wr-10">
+          <span class="table-header">P. Compra</span>
+        </th>
+        <td mat-cell *matCellDef="let element">{{ element?.ppurchase }}</td>
+      </ng-container>
+      <ng-container matColumnDef="psale">
+        <th mat-header-cell *matHeaderCellDef class="wr-10">
+          <span class="table-header">P. Venda</span>
+        </th>
+        <td mat-cell *matCellDef="let element">{{ element?.psale }}</td>
+      </ng-container>
+      <ng-container matColumnDef="inventory">
+        <th mat-header-cell *matHeaderCellDef class="wr-10">
+          <span class="table-header">Qtd. Estoque</span>
+        </th>
+        <td mat-cell *matCellDef="let element">{{ element?.inventory }}</td>
+      </ng-container>
+      <ng-container matColumnDef="provider">
+        <th mat-header-cell *matHeaderCellDef class="wr-10">
+          <span class="table-header">Fornecedor</span>
+        </th>
+        <td mat-cell *matCellDef="let element">{{ element?.provider }}</td>
+      </ng-container>
+      <ng-container matColumnDef="stripe">
+        <th mat-header-cell *matHeaderCellDef class="wr-10">
+          <span class="table-header">Tarja</span>
+        </th>
+        <td mat-cell *matCellDef="let element">{{ element?.stripe }}</td>
+      </ng-container>
+      <ng-container matColumnDef="revenue">
+        <th mat-header-cell *matHeaderCellDef class="wr-10">
+          <span class="table-header">Receita</span>
+        </th>
+        <td mat-cell *matCellDef="let element">{{ element?.revenue }}</td>
+      </ng-container>
+      <ng-container matColumnDef="generic">
+        <th mat-header-cell *matHeaderCellDef class="wr-10">
+          <span class="table-header">Genérico</span>
+        </th>
+        <td mat-cell *matCellDef="let element">{{ element?.generic }}</td>
+      </ng-container>
+      <ng-container matColumnDef="action">
+        <th mat-header-cell *matHeaderCellDef class="action-th">
+          <span class="table-header">Ações</span>
+        </th>
+        <td mat-cell *matCellDef="let element" class="action-th">
+          <button
+            mat-icon-button
+            matTooltip="Deletar"
+            style="color: #b41e2a"
+            (click)="deleteProduct(element)"
+          >
+            <mat-icon class="red">delete</mat-icon>
+          </button>
+          <button
+            class="buttons-action"
+            mat-icon-button
+            matTooltip="Editar"
+            [routerLink]="element.id"
+          >
+            <mat-icon>edit</mat-icon>
+          </button>
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+    </table>
+  </div>
+
+  <div class="endBtn">
+    <button color="accent" mat-flat-button routerLink="new">Novo Produto</button>
+  </div>
+</div>

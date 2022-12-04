@@ -12,8 +12,6 @@ export class UsersTableComponent implements OnInit {
 
   displayedColumns = ['username','name','email','profile','action']
 
-
-
   constructor() { }
 
   ngOnInit(): void {
