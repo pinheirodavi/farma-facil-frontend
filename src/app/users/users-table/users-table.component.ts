@@ -27,7 +27,6 @@ export class UsersTableComponent implements OnInit {
 
   ngOnInit(): void {
     this.service.findUsers().subscribe(response => {
-      console.log(response)
       this.userDataSource.data = response;
     }, error => {
       console.log('Não foi possível listar os usuários')

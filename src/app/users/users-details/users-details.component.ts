@@ -30,24 +30,60 @@ export class UsersDetailsComponent implements OnInit {
     role: ['', Validators.required],
     password: ['', Validators.required],
     confirmPassword: ['', Validators.required],
-  })
+  });
 
   ngOnInit(): void {
     this.route.params.subscribe({
       next: (params) => {
         this.isEdit = params['id'] !== 'new';
         this.id = params['id'];
-      }
-    })
+      },
+    });
 
     if (this.isEdit) {
-      this.service.findUserById(this.id).subscribe( ({name, email, role}) => {
-      this.usersForm.patchValue({name, email, role},{emitEvent: false})
-      })
+      this.service.findUserById(this.id).subscribe(({ name, email, role }) => {
+        this.usersForm.patchValue({ name, email, role }, { emitEvent: false });
+      });
     }
   }
 
-  patch() {
+  registerUser() {
+    this.service
+      .createUser({
+        name: this.usersForm.value.name,
+        email: this.usersForm.value.email,
+        password: this.usersForm.value.password,
+        role: this.usersForm.value.role,
+      })
+      .subscribe(
+        (success) => {
+          alert('Usuário cadastrado com sucesso');
+          this.router.navigate(['/users']);
+        },
+        (error) => {
+          alert('Erro ao criar usuário' + error.message);
+        }
+      );
+  }
 
+  updateUser() {
+    this.service
+      .updateUser(
+        {
+          name: this.usersForm.value.name,
+          email: this.usersForm.value.email,
+          role: this.usersForm.value.role,
+        },
+        this.id
+      )
+      .subscribe(
+        (success) => {
+          alert('Usuário atualizado com sucesso');
+          this.router.navigate(['/users']);
+        },
+        (error) => {
+          alert('Erro ao criar usuário' + error.message);
+        }
+      );
   }
 }

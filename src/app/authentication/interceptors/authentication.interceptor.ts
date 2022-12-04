@@ -23,13 +23,15 @@ export class AuthenticationInterceptor implements HttpInterceptor {
   ): Observable<HttpEvent<unknown>> {
     const updatedRequest = request.clone({
       setHeaders: {
-        Authorization: `Bearer ${this.authService.getAccessToken()}`,
+        Authorization: `Bearer ${this.authService.getAccessToken().token}`,
       },
     });
     return next.handle(updatedRequest).pipe(
       catchError((err, _caught) => {
-        if (err.status === 403 || err.status === 401) {
-          this.router.navigate(['/login']);
+        if (err.status === 401) {
+          // CONSERTAR ISSO AQUI !!!!!!!!!!!!!!
+        }else if(err.status === 403){
+          this.router.navigate([""]);
         }
         return throwError(() => err);
       })

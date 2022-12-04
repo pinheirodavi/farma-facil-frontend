@@ -38,13 +38,12 @@ export class AuthenticationService {
   userRole: any;
 
   authenticate(loginInfo: { login: string; password: string }) {
-    console.log(loginInfo);
     return this.http
       .post<any>(`${environment.apiUrl}/auth/login`, loginInfo)
       .pipe(
         take(1),
         tap((response) => {
-          console.log(response);
+          console.log(response.user.role);
           this.token = response.authTokens;
         })
       );
@@ -104,9 +103,9 @@ export class AuthenticationService {
   getAccessToken() {
     if (this.token) {
       const { accessToken } = JSON.parse(this.token);
-      return accessToken.token;
+      return accessToken;
     } else {
-      return null;
+      return '';
     }
   }
 }
