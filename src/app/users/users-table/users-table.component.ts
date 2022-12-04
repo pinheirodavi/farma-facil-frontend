@@ -27,12 +27,18 @@ export class UsersTableComponent implements OnInit {
 
   ngOnInit(): void {
     this.service.findUsers().subscribe(response => {
-      console.log(response)
       this.userDataSource.data = response;
     }, error => {
       console.log('Não foi possível listar os usuários')
     })
   }
 
-  deleteUser(element: any){}
+  deleteUser(element: any){
+    if(confirm(`Deseja deletar o usuário ${element.name}?`)){
+      this.service.deleteUser(element.id).subscribe(response => {
+        alert('Usuário deletado com sucesso!');
+        this.ngOnInit();
+      })
+    }
+  }
 }

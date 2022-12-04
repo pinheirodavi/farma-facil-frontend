@@ -103,9 +103,9 @@ export class AuthenticationService {
   getAccessToken() {
     if (this.token) {
       const { accessToken } = JSON.parse(this.token);
-      return accessToken.token;
+      return accessToken;
     } else {
-      return null;
+      return '';
     }
   }
 }
