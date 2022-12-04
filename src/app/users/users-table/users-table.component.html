@@ -1,5 +1,15 @@
 <div class="page" fxLayout="column" fxLayoutGap="15px">
-  <div fxLayoutAlign="end">
+  <h1>Fornecedores</h1>
+
+  <div>
+    <mat-form-field appearance="outline" class="filter">
+      <input
+        matInput
+        (keyup)="applyFilter($event)"
+        placeholder="Filtro"
+        #input
+      />
+    </mat-form-field>
   </div>
   <div>
     <table mat-table [dataSource]="userDataSource" class="full-width">
@@ -51,8 +61,12 @@
       <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
     </table>
   </div>
+  <mat-paginator [pageSizeOptions]="[10, 5, 15, 20]" showFirstLastButtons>
+  </mat-paginator>
 
   <div class="endBtn">
-    <button color="accent" class="add-button" mat-flat-button routerLink="new">Adicionar Novo Usuário</button>
+    <button color="accent" class="add-button" mat-flat-button routerLink="new">
+      Adicionar Novo Usuário
+    </button>
   </div>
 </div>

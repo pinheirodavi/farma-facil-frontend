@@ -1,12 +1,15 @@
 import { UsersService } from './../services/users.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
+import { MatPaginator } from '@angular/material/paginator';
 @Component({
   selector: 'app-users-table',
   templateUrl: './users-table.component.html',
   styleUrls: ['./users-table.component.scss']
 })
 export class UsersTableComponent implements OnInit {
+
+  @ViewChild(MatPaginator, {static: true}) paginator!: MatPaginator;
 
   userDataSource = new MatTableDataSource<any>([]);
 
@@ -26,6 +29,8 @@ export class UsersTableComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    this.userDataSource.paginator = this.paginator;
+
     this.service.findUsers().subscribe(response => {
       this.userDataSource.data = response;
     }, error => {
@@ -39,6 +44,15 @@ export class UsersTableComponent implements OnInit {
         alert('Usuário deletado com sucesso!');
         this.ngOnInit();
       })
+    }
+  }
+
+  applyFilter(event: Event) {
+    const filterValue = (event.target as HTMLInputElement).value;
+    this.userDataSource.filter = filterValue.trim().toLowerCase();
+
+    if (this.userDataSource.paginator) {
+      this.userDataSource.paginator.firstPage();
     }
   }
 }
