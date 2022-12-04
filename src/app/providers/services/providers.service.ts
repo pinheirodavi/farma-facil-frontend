@@ -14,7 +14,7 @@ export class ProvidersService {
   }
 
   findProviderById(id: any) {
-    return this.http.get<any>(`${environment.apiUrl}/providers${id}`);
+    return this.http.get<any>(`${environment.apiUrl}/providers/${id}`);
   }
 
   createProvider(provider: Object){

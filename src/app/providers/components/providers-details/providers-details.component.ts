@@ -12,6 +12,35 @@ export class ProvidersDetailsComponent implements OnInit {
 
   isNew: boolean = true;
   providerId: any;
+  states: string[] = [
+    'AC',
+    'AL',
+    'AP',
+    'AM',
+    'BA',
+    'CE',
+    'ES',
+    'GO',
+    'MA',
+    'MT',
+    'MS',
+    'MG',
+    'PA',
+    'PB',
+    'PR',
+    'PE',
+    'PI',
+    'RJ',
+    'RN',
+    'RS',
+    'RO',
+    'RR',
+    'SC',
+    'SP',
+    'SE',
+    'TO',
+    'DF'
+  ];
 
   providerForm = this.form.group({
     name: ['', Validators.required],
@@ -34,6 +63,7 @@ export class ProvidersDetailsComponent implements OnInit {
 
     this.route.params.subscribe({
       next: (params) => {
+        this.providerId = params['id'];
         this.providerId == "new" ? this.isNew = true : this.isNew = false;
       }
     });
@@ -51,6 +81,7 @@ export class ProvidersDetailsComponent implements OnInit {
   findProviderById() {
     this.providersService.findProviderById(this.providerId).subscribe( response => {
       this.providerForm.patchValue(response);
+      console.log(response)
     })
   }
 
@@ -58,22 +89,24 @@ export class ProvidersDetailsComponent implements OnInit {
     this.providersService.createProvider(this.providerForm.value).subscribe({
       next: () => {
         alert('Fornecedor adicionado com sucesso!');
+        this.router.navigate(['/providers']);
       },
       error: () => {
         alert('O fornecedor não pôde ser adicionado.')
       }
-    })
+    });
   }
 
   updateProvider() {
     this.providersService.updateProvider(this.providerForm.value, this.providerId).subscribe({
       next: () => {
         alert('Fornecedor atualizado com sucesso!');
+        this.router.navigate(['/providers']);
       },
       error: () => {
         alert('O fornecedor não pôde ser atualizado')
       }
-    })
+    });
   }
 
 

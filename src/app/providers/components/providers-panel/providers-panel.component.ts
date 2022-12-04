@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { ProvidersService } from './../../services/providers.service';
 import { MatTableDataSource } from '@angular/material/table';
 import { Component, OnInit, ViewChild } from '@angular/core';
@@ -29,7 +30,8 @@ export class ProvidersPanelComponent implements OnInit {
   ];
 
   constructor(
-    private providersService: ProvidersService
+    private providersService: ProvidersService,
+    private router: Router
   ) { }
 
   ngOnInit(): void {
@@ -54,14 +56,19 @@ export class ProvidersPanelComponent implements OnInit {
     }
   }
 
-  deleteProvider(id: any) {
-    this.providersService.deleteProvider(id).subscribe({
-      next: () => {
-        alert("Fornecedor excluído com sucesso!");
-      },
-      error: () => {
-        alert("O fornecedor não pôde ser excluído.")
-      }
-    });
+  deleteProvider(element: any) {
+    if(confirm(`Deseja excluir o fornecedor "${element.name}"?`)) {
+      this.providersService.deleteProvider(element.id).subscribe({
+        next: () => {
+          alert("Fornecedor excluído com sucesso!");
+          this.loadData();
+        },
+        error: () => {
+          alert("O fornecedor não pôde ser excluído.")
+        }
+      });
+    } else {
+
+    }
   }
 }

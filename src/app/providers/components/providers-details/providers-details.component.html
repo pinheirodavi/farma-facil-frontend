@@ -1,61 +1,70 @@
 <div class="page">
     <h1>Fornecedores</h1>
-    <div>
-        <form [formGroup]="providerForm">
-            <div class="general">
-                <mat-form-field appearance="outline">
-                    <mat-label>Nome</mat-label>
-                    <input matInput formControlName="name">
-                </mat-form-field>
+    <form [formGroup]="providerForm">
+      <div class="general">
+          <mat-form-field appearance="outline">
+              <mat-label>Nome</mat-label>
+              <input matInput formControlName="name">
+          </mat-form-field>
 
-                <mat-form-field appearance="outline">
-                    <mat-label>legalDocument</mat-label>
-                    <input matInput formControlName="legalDocument">
-                </mat-form-field>
-            </div>
-            <div class="contact">
-                <mat-form-field appearance="outline">
-                    <mat-label>E-mail de contato</mat-label>
-                    <input matInput formControlName="email">
-                </mat-form-field>
+          <mat-form-field appearance="outline">
+              <mat-label>CNPJ</mat-label>
+              <input matInput formControlName="legalDocument" mask = "00.000.000/0000-00">
+          </mat-form-field>
+      </div>
+      <div class="contact">
+          <mat-form-field appearance="outline">
+              <mat-label>E-mail de contato</mat-label>
+              <input matInput formControlName="email">
+          </mat-form-field>
 
-                <mat-form-field appearance="outline">
-                    <mat-label>Telefone de contato</mat-label>
-                    <input matInput formControlName="phone">
-                </mat-form-field>
-            </div>
-            <div class="address">
-                <mat-form-field appearance="outline">
-                    <mat-label>postalCode</mat-label>
-                    <input matInput formControlName="postalCode">
-                </mat-form-field>
+          <mat-form-field appearance="outline">
+              <mat-label>Telefone de contato</mat-label>
+              <input matInput formControlName="phone" mask = "(00) 0 0000-0000">
+          </mat-form-field>
+      </div>
+      <div class="address">
+          <mat-form-field appearance="outline">
+              <mat-label>CEP</mat-label>
+              <input matInput formControlName="postalCode" mask = "00000-000">
+          </mat-form-field>
 
-                <mat-form-field appearance="outline">
-                    <mat-label>Estado</mat-label>
-                    <input matInput formControlName="state">
-                </mat-form-field>
+          <mat-form-field appearance="outline">
+              <mat-label>Estado</mat-label>
+              <mat-select formControlName="state">
+                <mat-option *ngFor="let state of states" [value]="state">
+                  {{ state }}
+                </mat-option>
+              </mat-select>
+          </mat-form-field>
 
-                <mat-form-field appearance="outline">
-                    <mat-label>Cidade</mat-label>
-                    <input matInput formControlName="city">
-                </mat-form-field>
-            </div>
-        </form>
-        <div>
-            <button
-                mat-flat-button
-                (click)="isNew? createProvider() : updateProvider()"
-                class="button"
-            >
-                {{ isNew? 'Adicionar' : 'Atualizar' }}
-            </button>
-            <button
-                mat-flat-button
-                (click)="clear()"
-                class="clear-button"
-            >
-                Limpar
-            </button>
-        </div>
-    </div>
+          <mat-form-field appearance="outline">
+              <mat-label>Cidade</mat-label>
+              <input matInput formControlName="city">
+          </mat-form-field>
+      </div>
+  </form>
+  <div class="bottom-bar">
+      <button
+          mat-flat-button
+          routerLink="/providers"
+          class="clear-button"
+      >
+          Voltar
+      </button>
+      <button
+          mat-flat-button
+          (click)="clear()"
+          class="clear-button"
+      >
+          Limpar
+      </button>
+      <button
+          mat-flat-button
+          (click)="isNew? createProvider() : updateProvider()"
+          class="button"
+      >
+          {{ isNew? 'Adicionar' : 'Atualizar' }}
+      </button>
+  </div>
 </div>
