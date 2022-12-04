@@ -3,7 +3,7 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  apiUrl: 'http://localhost:3000/v1',
+  apiUrl: 'https://dw2a4-public-api.herokuapp.com/v1',
   production: false
 };
 
