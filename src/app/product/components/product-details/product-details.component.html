@@ -1,0 +1,84 @@
+<div class="page" fxLayout="column" fxLayoutGap="30px">
+  <div class="form">
+    <form [formGroup]="productForm" flexLayout="column">
+      <div class="formLine">
+        <mat-form-field appearance="outline" class="wr-50">
+          <mat-label> Nome </mat-label>
+          <input matInput formControlName="name" />
+          <mat-error *ngIf="productForm.get('name')?.errors?.['required']">
+            Nome é obrigatório.
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field appearance="outline" class="wr-50">
+          <mat-label> Preço de Compra </mat-label>
+          <input matInput type="number" formControlName="ppurchase" />
+          <mat-error *ngIf="productForm.get('ppurchase')?.errors?.['required']">
+            Preço de Compra é obrigatório.
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field appearance="outline" class="wr-50">
+          <mat-label> Preço de Venda </mat-label>
+          <input matInput type="number" formControlName="psale" />
+          <mat-error *ngIf="productForm.get('psale')?.errors?.['required']">
+            Preço de Venda é obrigatório.
+          </mat-error>
+        </mat-form-field>
+      </div>
+      <div class="formLine">
+        <mat-form-field appearance="outline" class="wr-50">
+          <mat-label> Fornecedor </mat-label>
+          <input matInput formControlName="provider" />
+          <mat-error *ngIf="productForm.get('provider')?.errors?.['required']">
+            Fornecedor é obrigatório.
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field appearance="outline" class="wr-50">
+          <mat-label> Quantidade em Estoque </mat-label>
+          <input matInput type="number" formControlName="inventory" />
+          <mat-error *ngIf="productForm.get('inventory')?.errors?.['required']">
+            Quantidade em Estoque é obrigatório.
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field appearance="outline" class="wr-50">
+          <mat-label> Tarja </mat-label>
+          <mat-select formControlName="stripe" disableOptionCentering>
+            <mat-option [value]="'1'"> Preta </mat-option>
+            <mat-option [value]="'2'"> Vermelha </mat-option>
+            <mat-option [value]="'3'"> Amarela </mat-option>
+            <mat-option [value]="'4'"> Branca </mat-option>
+          </mat-select>
+          <mat-error *ngIf="productForm.get('stripe')?.errors?.['required']">
+            Tarja é obrigatório.
+          </mat-error>
+        </mat-form-field>
+      </div>
+      <div class="formLine">
+        <mat-form-field appearance="outline" class="wr-15">
+          <mat-label> Receita </mat-label>
+          <mat-select formControlName="recipe" disableOptionCentering>
+            <mat-option [value]="'1'"> Obrigatório </mat-option>
+            <mat-option [value]="'2'"> Não obrigatório </mat-option>
+          </mat-select>
+          <mat-error *ngIf="productForm.get('recipe')?.errors?.['required']">
+            Receita é obrigatório.
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field appearance="outline" class="wr-15">
+          <mat-label> Genérico </mat-label>
+          <mat-select formControlName="generic" disableOptionCentering>
+            <mat-option [value]="'1'"> Sim </mat-option>
+            <mat-option [value]="'2'"> Não </mat-option>
+          </mat-select>
+          <mat-error *ngIf="productForm.get('generic')?.errors?.['required']">
+            Genérico é obrigatório.
+          </mat-error>
+        </mat-form-field>
+      </div>
+    </form>
+  </div>
+
+  <div class="endBtn">
+    <button color="accent" mat-flat-button routerLink="..">Voltar</button>
+    <button color="accent" mat-flat-button routerLink="..">{{ isEdit? "Atualizar" : "Salvar"}}</button>
+  </div>
+</div>

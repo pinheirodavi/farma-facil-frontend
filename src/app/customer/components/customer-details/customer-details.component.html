@@ -1,0 +1,72 @@
+<div class="page" fxLayout="column" fxLayoutGap="30px">
+  <div class="form">
+    <form [formGroup]="customerForm" flexLayout="column">
+      <div class="formLine">
+        <mat-form-field appearance="outline" class="wr-50">
+          <mat-label> Nome </mat-label>
+          <input matInput formControlName="name" />
+          <mat-error *ngIf="customerForm.get('name')?.errors?.['required']">
+            Nome é obrigatório.
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field appearance="outline" class="wr-50">
+          <mat-label> Email </mat-label>
+          <input matInput formControlName="email" />
+          <mat-error *ngIf="customerForm.get('email')?.errors?.['required']">
+            Email é obrigatório.
+          </mat-error>
+        </mat-form-field>
+      </div>
+      <div class="formLine">
+        <mat-form-field appearance="outline" class="wr-50">
+          <mat-label> CEP </mat-label>
+          <input matInput formControlName="postalCode" mask='00000-000' />
+          <mat-error *ngIf="customerForm.get('postalCode')?.errors?.['required']">
+            CEP é obrigatório.
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field appearance="outline" class="wr-50">
+          <mat-label> Endereço </mat-label>
+          <input matInput formControlName="address" />
+          <mat-error *ngIf="customerForm.get('address')?.errors?.['required']">
+            Endereço é obrigatório.
+          </mat-error>
+        </mat-form-field>
+      </div>
+      <div class="formLine">
+
+        <mat-form-field appearance="outline" class="wr-50">
+          <mat-label> Documento </mat-label>
+          <input matInput formControlName="legalDocument" mask='000.000.000-00'/>
+          <mat-error *ngIf="customerForm.get('legalDocument')?.errors?.['required']">
+            Documento é obrigatório.
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field appearance="outline" class="wr-50">
+          <mat-label> Telefone </mat-label>
+          <input matInput formControlName="phone" mask='(00) 00000-0000'/>
+          <mat-error *ngIf="customerForm.get('phone')?.errors?.['required']">
+            Telefone é obrigatório.
+          </mat-error>
+        </mat-form-field>
+      </div>
+      <div class="formLine">
+        <mat-form-field appearance="outline" class="wr-15">
+          <mat-label> Cliente Ativo </mat-label>
+          <mat-select formControlName="isActiveClient" disableOptionCentering>
+            <mat-option [value]="'1'"> Sim </mat-option>
+            <mat-option [value]="'2'"> Não </mat-option>
+          </mat-select>
+          <mat-error *ngIf="customerForm.get('isActiveClient')?.errors?.['required']">
+            Cliente Ativo é obrigatório.
+          </mat-error>
+        </mat-form-field>
+      </div>
+    </form>
+  </div>
+
+  <div class="endBtn">
+    <button color="accent" mat-flat-button routerLink="..">Voltar</button>
+    <button color="accent" mat-flat-button routerLink="..">{{ isEdit? "Atualizar" : "Salvar"}}</button>
+  </div>
+</div>

@@ -15,10 +15,10 @@ export class ProvidersDetailsComponent implements OnInit {
 
   providerForm = this.form.group({
     name: ['', Validators.required],
-    cnpj: ['', Validators.required],
+    legalDocument: ['', Validators.required],
     email: ['', Validators.required],
     phone: ['', Validators.required],
-    cep: ['', Validators.required],
+    postalCode: ['', Validators.required],
     state: ['', Validators.required],
     city: ['', Validators.required]
   });

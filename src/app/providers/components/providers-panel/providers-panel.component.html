@@ -1,1 +1,129 @@
-<p>providers-panel works!</p>
+<div class="page">
+  <h1>Fornecedores</h1>
+
+  <div>
+    <mat-form-field fxFlex="80">
+      <input matInput (keyup)="applyFilter($event)" placeholder="Filter" #input>
+    </mat-form-field>
+  </div>
+
+  <div>
+    <table mat-table [dataSource]="dataTable">
+<!--       <ng-container matColumnDef="id">
+        <th mat-header-cell *matHeaderCellDef>
+          <span>
+            ID
+          </span>
+        </th>
+        <td mat-ceil *matCellDef="let element">
+          {{ element?.id }}
+        </td>
+      </ng-container> -->
+
+      <ng-container matColumnDef="name">
+        <th mat-header-cell *matHeaderCellDef>
+          <span>
+            Nome
+          </span>
+        </th>
+        <td mat-ceil *matCellDef="let element">
+          {{ element?.name }}
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="legalDocument">
+        <th mat-header-cell *matHeaderCellDef>
+          <span>
+            CNPJ
+          </span>
+        </th>
+        <td mat-ceil *matCellDef="let element">
+          {{ element?.legalDocument }}
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="email">
+        <th mat-header-cell *matHeaderCellDef>
+          <span>
+            E-mail
+          </span>
+        </th>
+        <td mat-ceil *matCellDef="let element">
+          {{ element?.email }}
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="phone">
+        <th mat-header-cell *matHeaderCellDef>
+          <span>
+            Telefone
+          </span>
+        </th>
+        <td mat-ceil *matCellDef="let element">
+          {{ element?.phone }}
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="postalCode">
+        <th mat-header-cell *matHeaderCellDef>
+          <span>
+            DEP
+          </span>
+        </th>
+        <td mat-ceil *matCellDef="let element">
+          {{ element?.postalCode }}
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="state">
+        <th mat-header-cell *matHeaderCellDef>
+          <span>
+            Estado
+          </span>
+        </th>
+        <td mat-ceil *matCellDef="let element">
+          {{ element?.state }}
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="city">
+        <th mat-header-cell *matHeaderCellDef>
+          <span>
+            Cidade
+          </span>
+        </th>
+        <td mat-ceil *matCellDef="let element">
+          {{ element?.city }}
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="actions">
+        <th mat-header-cell *matHeaderCellDef class="w-9">
+          <span>Ações</span>
+        </th>
+        <td mat-ceil *matCellDef="let element">
+          <button
+            mat-icon-button
+            [disabled]=""
+            (click)="deleteProvider(element)"
+            [matTooltip]="'Deletar'"
+          >
+            <mat-icon class="delete"> delete </mat-icon>
+          </button>
+          <button
+            mat-icon-button
+            [disabled]=""
+            [routerLink]="element"
+            [matTooltip]="'Editar'"
+          >
+            <mat-icon> edit </mat-icon>
+          </button>
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+    </table>
+  </div>
+  <mat-paginator [pageSizeOptions]="[10, 5, 15, 20]" showFirstLastButtons></mat-paginator>
+</div>

@@ -9,16 +9,24 @@ export class ProvidersService {
 
   constructor(private http: HttpClient) { }
 
+  findAllProviders() {
+    return this.http.get<any>(`${environment.apiUrl}/providers`);
+  }
+
   findProviderById(id: any) {
-    return this.http.get<any>(`${environment.apiUrl}/v1/providers/${id}`);
+    return this.http.get<any>(`${environment.apiUrl}/providers${id}`);
   }
 
   createProvider(provider: Object){
-    return this.http.post<any>(`${environment.apiUrl}/v1/providers`, provider);
+    return this.http.post<any>(`${environment.apiUrl}/providers`, provider);
   }
 
   updateProvider(provider: Object, id: any){
-    return this.http.put<any>(`${environment.apiUrl}/v1/providers/${id}`, provider);
+    return this.http.put<any>(`${environment.apiUrl}/providers/${id}`, provider);
+  }
+
+  deleteProvider(id: any) {
+    return this.http.delete<any>(`${environment.apiUrl}/providers/${id}`);
   }
 
 }

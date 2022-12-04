@@ -1,14 +1,13 @@
 <mat-toolbar class="primary-background">
   <button
-    fxFlex="5"
-    fxLayoutAlign="start"
+    fxFlex="0.2"
     class="menu-button"
-    mat-icon-button
+    mat-flat-button
     (click)="drawer.toggle()"
   >
     <mat-icon>menu</mat-icon>
   </button>
-  <img class="logo-size" src="assets/images/Logo.svg" />
+  <img routerLink="" class="logo-size" src="assets/images/Logo.svg" />
 </mat-toolbar>
 <mat-sidenav-container>
   <mat-sidenav
@@ -19,7 +18,11 @@
     [mode]="(isHandset$ | async) ? 'over' : 'side'"
     [opened]="(isHandset$ | async) === false && isOpen"
   >
-    <div class="full-height" fxLayout="column" fxLayoutAlign="space-between end">
+    <div
+      class="full-height"
+      fxLayout="column"
+      fxLayoutAlign="space-between end"
+    >
       <div>
         <div
           fxLayout="row"
@@ -33,7 +36,7 @@
         <div
           fxLayout="row"
           fxLayoutAlign="space-between center"
-          routerLink=""
+          routerLink="/products"
           class="full-width sidenav-button"
         >
           <p>Produtos</p>
@@ -46,6 +49,15 @@
           class="full-width sidenav-button"
         >
           <p>Fornecedores</p>
+          <mat-icon>chevron_right</mat-icon>
+        </div>
+        <div
+          fxLayout="row"
+          fxLayoutAlign="space-between center"
+          routerLink="/customers"
+          class="full-width sidenav-button"
+        >
+          <p>Clientes</p>
           <mat-icon>chevron_right</mat-icon>
         </div>
         <div
@@ -64,7 +76,7 @@
         (click)="logout()"
         class="full-width sidenav-button"
       >
-        <p>Sair</p>
+        <p> Sair  <mat-icon>logout</mat-icon> </p>
       </div>
     </div>
   </mat-sidenav>
