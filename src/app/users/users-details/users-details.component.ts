@@ -2,7 +2,13 @@ import { UsersService } from './../services/users.service';
 import { AuthenticationService } from 'src/app/authentication/services/authentication.service';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { FormBuilder, Validators } from '@angular/forms';
+import {
+  AbstractControl,
+  FormBuilder,
+  ValidationErrors,
+  ValidatorFn,
+  Validators,
+} from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 
 @Component({
@@ -24,13 +30,24 @@ export class UsersDetailsComponent implements OnInit {
   isEdit = false;
   id!: string;
 
-  usersForm = this.form.group({
-    name: ['', Validators.required],
-    email: ['', Validators.required],
-    role: ['', Validators.required],
-    password: ['', Validators.required],
-    confirmPassword: ['', Validators.required],
-  });
+  checkPasswords: ValidatorFn = (
+    group: AbstractControl
+  ): ValidationErrors | null => {
+    let pass = group.get('password')!.value;
+    let confirmPass = group.get('confirmPassword')!.value;
+    return pass === confirmPass ? null : { notSame: true };
+  };
+
+  usersForm = this.form.group(
+    {
+      name: ['', Validators.required],
+      email: ['', Validators.required],
+      role: ['', Validators.required],
+      password: ['', Validators.required],
+      confirmPassword: ['', Validators.required],
+    },
+    { validators: this.checkPasswords }
+  );
 
   ngOnInit(): void {
     this.route.params.subscribe({
@@ -48,7 +65,8 @@ export class UsersDetailsComponent implements OnInit {
   }
 
   registerUser() {
-    this.service
+    if(this.usersForm.valid){
+      this.service
       .createUser({
         name: this.usersForm.value.name,
         email: this.usersForm.value.email,
@@ -64,6 +82,10 @@ export class UsersDetailsComponent implements OnInit {
           alert('Erro ao criar usuário' + error.message);
         }
       );
+    }else{
+      alert('Erro no formulário!')
+    }
+
   }
 
   updateUser() {

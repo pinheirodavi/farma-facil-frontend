@@ -51,7 +51,7 @@ export class CustomerDetailsComponent implements OnInit {
     this.customerService.updateCustomer(this.customerForm.value, this.customerId).subscribe({
       next: () => {
         alert('Produto atualizado com sucesso!');
-        this.router.navigate(['/products']);
+        this.router.navigate(['/customers']);
       },
       error: (e) => {
         alert('O produto não pôde ser atualizado.')
